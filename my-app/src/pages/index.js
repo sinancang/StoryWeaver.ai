@@ -3,6 +3,10 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 
+// import p5 from 'p5';
+// import '../public/p5js/sketch.js';
+
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -58,28 +62,16 @@ export default function Home() {
           <form action="/api/processUserInfo" method="post">
             <label for="first">What is your name?</label>
             <input className="bg-white" type="text" id="first" name="first" />
-  
-            <button type="submit">Submit</button>
-          </form>
-        </div>
 
-        <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight">
-          {/* <!-- Basic HTML Form --> */}
-          <form action="/api/processUserInfo" method="post">
             <label for="first">How do you feel today</label>
             <input className="bg-white" type="text" id="first" name="first" />
 
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-
-
-        <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight">
-          {/* <!-- Basic HTML Form --> */}
-          <form action="/api/processUserInfo" method="post">
-            <label for="first">What is your personality like?</label>
+            <label for="first">What are your pronouns?</label>
             <input className="bg-white" type="text" id="first" name="first" />
 
+            <label for="first">Give me an adjective?</label>
+            <input className="bg-white" type="text" id="first" name="first" />
+  
             <button type="submit">Submit</button>
           </form>
         </div>
