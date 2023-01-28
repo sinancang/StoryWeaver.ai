@@ -52,6 +52,17 @@ export default function Home() {
           </div>
         </div>
 
+
+        <div className="bg-gray-200 py-2 px-4 rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue">
+          {/* <!-- Basic HTML Form --> */}
+          <form action="/send-data-here" method="post">
+            <label for="first">Story Idea</label>
+            <input type="text" id="first" name="first" />
+  
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
         {/* <div className={styles.grid}>
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
