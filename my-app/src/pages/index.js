@@ -61,16 +61,16 @@ export default function Home() {
           {/* <!-- Basic HTML Form --> */}
           <form action="/api/processUserInfo" method="post">
             <label for="first">What is your name?</label>
-            <input className="bg-white" type="text" id="first" name="first" />
+            <input className="bg-white" type="text" id="name" name="name" />
 
             <label for="first">How do you feel today</label>
-            <input className="bg-white" type="text" id="first" name="first" />
+            <input className="bg-white" type="text" id="feeling" name="feeling" />
 
             <label for="first">What are your pronouns?</label>
-            <input className="bg-white" type="text" id="first" name="first" />
+            <input className="bg-white" type="text" id="pronouns" name="pronouns" />
 
-            <label for="first">Give me an adjective?</label>
-            <input className="bg-white" type="text" id="first" name="first" />
+            <label for="first">How would you describe yourself?</label>
+            <input className="bg-white" type="text" id="describe" name="describe" />
   
             <button type="submit">Submit</button>
           </form>
