@@ -8,9 +8,15 @@ export default async function handler(req, res) {
     const action = "staying awake";
     const pronouns = req.body['pronouns'];
 
-    console.log(pronouns);
-    const prompt = "Write me chaotic evil story where our hero " + name + ", finds herself feeling " +
-        feeling + " today. So she decides to" + action +". What does she see?";
+    const pronounMap = new Map();
+    pronounMap.set('he/him', ['he', 'him', 'his', 'himself'])
+    pronounMap.set('she/her', ['she', 'her', 'hers', 'herself'])
+    pronounMap.set('they/them', ['they', 'them', 'theirs', 'themselves'])
+    pronounMap.set('Xe/Xir', ['Xe', 'Xir', 'Xem', 'Xeir'])
+
+    const prompt = "Write me an introduction to a chaotic evil story where our hero " +
+        name + ", finds " + pronounMap.get(pronouns)[3] + " feeling " + feeling + " today. So "
+        + pronounMap.get(pronouns)[0] + " decides to" + action +". What does she see?";
 
     const response = await cohere.generate({
             model: 'command-xlarge-20221108',
@@ -24,5 +30,7 @@ export default async function handler(req, res) {
             stop_sequences: [],
             return_likelihoods: 'NONE'
     });
+    console.log(prompt)
+    console.log(response)
     res.status(200).json({ text: `${response.body.generations[0].text}`});
 }
