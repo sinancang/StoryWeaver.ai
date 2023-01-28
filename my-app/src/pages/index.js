@@ -19,6 +19,9 @@ export default function Home() {
         <meta name="description" content="Soniar" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/cloud.ico" />
+        {/* <script src="/p5js/p5.min.js"></script> */}
+        {/* <script src="/p5js/sketch.js"></script> */}
+        
       </Head>
       <main className={styles.main}>
         {/* <div className="text-xl">
@@ -71,10 +74,12 @@ export default function Home() {
             <label className={submitButton}>What are your pronouns?</label>
             <input className={buttonField} type="text" id="pronouns" name="pronouns" /><br />
 
-            <label className={submitButton}>How would you describe yourself?</label>
-            <input className={buttonField} type="text" id="describe" name="describe" /><br />
+            <label className={submitButton}>What do you want your character to do?</label>
+            <input className={buttonField} type="text" id="describe" name="describe" /><br /><br />
 
-            <button type="submit" class="blurr" className={submitButton}>Submit</button>
+
+            {/* <button type="submit" className={submitButton}>Submit</button> */}
+            <button class="button-31" role="button">Submit</button>
           </form>
         </div>
 
@@ -95,6 +100,9 @@ export default function Home() {
           </a>
 
         </div> */}
+
+
+
 
 
       </main>
