@@ -8,8 +8,9 @@ export default async function handler(req, res) {
     const action = "staying awake";
     const pronouns = req.body['pronouns'];
 
-    const prompt = "Write me chaotic evil story where our hero " + name + ", finds herself feeling " +
-        feeling + " today. So she decides to" + action +". What does she see?";
+    const prompt = "Write me the introduction to a chaotic evil story where our hero " + name +
+        ", finds herself feeling " + feeling + " today. So she decides to" + action +
+        ". What does she see? Give me a short introduction and then two choices for her to choose from.";
     const response = await cohere.generate({
             model: 'command-xlarge-20221108',
             prompt: prompt,
