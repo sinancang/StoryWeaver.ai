@@ -64,7 +64,7 @@ export default function Home() {
 
         <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8">
           {/* <!-- Basic HTML Form --> */}
-          <form action="/api/processUserInfo" method="post">
+          <form action="/api/cohere" method="post">
             <label className={submitButton}>What is your name?</label>
             <input className={buttonField} type="text" id="name" name="name" /><br />
 
@@ -73,6 +73,13 @@ export default function Home() {
 
             <label className={submitButton}>What are your pronouns?</label>
             <input className={buttonField} type="text" id="pronouns" name="pronouns" /><br />
+            <select name="pronouns">
+              <option  name="He/him/his">He/him/his</option>
+              <option name="She/her/hers" selected>She/her/hers</option>
+              <option name="They/them/their">They/them/their</option>
+              <option name="Xee">Xee</option>
+            </select>
+
 
             <label className={submitButton}>What do you want your character to do?</label>
             <input className={buttonField} type="text" id="describe" name="describe" /><br /><br />
