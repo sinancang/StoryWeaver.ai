@@ -10,6 +10,17 @@ import styles from '@/styles/Home.module.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  const submitButton = "px-4";
+
+  async function  validateInput (text) {
+    
+    await {
+
+    }
+  }
+
+
   return (
     <>
       <Head>
@@ -57,22 +68,23 @@ export default function Home() {
         </div>
 
 
+
         <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight">
           {/* <!-- Basic HTML Form --> */}
           <form action="/api/processUserInfo" method="post">
-            <label for="first">What is your name?</label>
+            <label className={submitButton}>What is your name?</label>
             <input className="bg-white" type="text" id="name" name="name" />
 
-            <label for="first">How do you feel today</label>
+            <label className={submitButton}>How do you feel today</label>
             <input className="bg-white" type="text" id="feeling" name="feeling" />
 
-            <label for="first">What are your pronouns?</label>
+            <label className={submitButton}>What are your pronouns?</label>
             <input className="bg-white" type="text" id="pronouns" name="pronouns" />
 
-            <label for="first">How would you describe yourself?</label>
+            <label className={submitButton}>How would you describe yourself?</label>
             <input className="bg-white" type="text" id="describe" name="describe" />
   
-            <button type="submit">Submit</button>
+            <button type="submit" className={submitButton}>Submit</button>
           </form>
         </div>
 
