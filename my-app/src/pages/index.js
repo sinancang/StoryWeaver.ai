@@ -15,6 +15,19 @@ export default function Home() {
   return (
     <>
       <Head>
+
+        <header className="bg-white bg-opacity-75 w-full flex justify-between items-center p-4">
+          <div>
+            <a href="/">
+              <img src="davidholcer.png" alt="Logo" className="px-5 w-2/12" />
+            </a>
+          </div>
+          <nav className="text-right">
+            <a href="/about" className="text-black hover:text-gray-600 mr-4">About</a>
+            {/* Additional links to other pages */}
+          </nav>
+        </header>
+        
         <title>Soniar</title>
         <meta name="description" content="Soniar" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,7 +68,19 @@ export default function Home() {
             <button class="button-31" role="button">Submit</button>
           </form>
         </div>
+
+
+        < footer className="bg-transparent text-center py-4" >
+          <div className="container">
+            <p className="text-s">Copyright © 2023 StoryWeaver</p>
+          </div>
+        </footer >
+
+
       </main>
     </>
   )
+
+
+
 }
