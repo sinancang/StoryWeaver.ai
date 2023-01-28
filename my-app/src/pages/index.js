@@ -15,13 +15,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className="text-xl">
+        {/* <div className="text-xl">
           <p>
-            Image Sample&nbsp;
+            Image Sample&nbsp; */}
             {/* <code className={styles.code}>src/pages/index.js</code> */}
-          </p>
-          <div>
-            <a
+          {/* </p> */}
+          {/* <div> */}
+            {/* <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
               target="_blank"
               rel="noopener noreferrer"
@@ -37,7 +37,7 @@ export default function Home() {
               />
             </a>
           </div>
-        </div>
+        </div> */}
 
         <div className={styles.center}>
 
@@ -53,15 +53,37 @@ export default function Home() {
         </div>
 
 
-        <div className="bg-gray-200 py-2 px-4 rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue">
+        <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight">
           {/* <!-- Basic HTML Form --> */}
-          <form action="/send-data-here" method="post">
-            <label for="first">Story Idea</label>
-            <input type="text" id="first" name="first" />
+          <form action="/api/processUserInfo" method="post">
+            <label for="first">What is your name?</label>
+            <input className="bg-white" type="text" id="first" name="first" />
   
             <button type="submit">Submit</button>
           </form>
         </div>
+
+        <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight">
+          {/* <!-- Basic HTML Form --> */}
+          <form action="/api/processUserInfo" method="post">
+            <label for="first">How do you feel today</label>
+            <input className="bg-white" type="text" id="first" name="first" />
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
+
+        <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight">
+          {/* <!-- Basic HTML Form --> */}
+          <form action="/api/processUserInfo" method="post">
+            <label for="first">What is your personality like?</label>
+            <input className="bg-white" type="text" id="first" name="first" />
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
 
         {/* <div className={styles.grid}>
           <a
