@@ -16,17 +16,15 @@ export default function Home() {
     <>
       <Head>
 
-        <header className="bg-white bg-opacity-75 w-full flex justify-between items-center p-4">
-          <div>
-            <a href="/">
-              <img src="davidholcer.png" alt="Logo" className="px-5 w-2/12" />
-            </a>
+        <header className="w-full bg-white bg-opacity-75">
+          <div className="flex justify-center items-center pt-3">
+            <img src="logo2.png" alt="Logo" className="w-4/12" />
           </div>
-          <nav className="text-right">
-            <a href="/about" className="text-black hover:text-gray-600 mr-4">About</a>
-            {/* Additional links to other pages */}
+          <nav className="w-full flex justify-end">
+            <a href="#about" className="px-11 py-2  text-black text-lg font-medium">About</a>
           </nav>
         </header>
+
         
         <title>Soniar</title>
         <meta name="description" content="Soniar" />
