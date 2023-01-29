@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
     const prompt = setPrompt();
 
-    function setPrompt() {
+    async function setPrompt() {
         if (section == 'introduction') {
             fs.writeFile(db, "")
             return "Write me an introduction to a chaotic story where our hero " +
@@ -37,9 +37,11 @@ export default async function handler(req, res) {
             return "Read this: " + promptHistory + "\nNow give an indexed list of four actions the character could take.";
         } else if (section == 'middle') {
             fs.appendFile(db, "\n" + action)
-            return "Continue this story: " +promptHistory + "\nDescribe a problem the hero faces next and give a list of four actions the hero can take.";
+            const promptHistory = await fs.readFile(db, 'utf8');
+            return "Continue this story: " + promptHistory + "\nDescribe a problem the hero faces next and give a list of four actions the hero can take.";
         } else if (section == 'conclusion') {
             fs.appendFile(db, "\n" + action)
+            const promptHistory = await fs.readFile(db, 'utf8');
             return promptHistory + "\n Now write a conclusion as to how the hero resolves the conflict.";
         }
     }

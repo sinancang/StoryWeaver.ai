@@ -136,8 +136,6 @@ export default function Home() {
     }
 
 
-
-
     const fetchOptions = async () => {
         const section_prev = formInfo['section']
         formInfo['section'] = 'option';
