@@ -4,11 +4,14 @@ import styles from '@/styles/Home.module.css'
 import React, { useEffect, useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
+<<<<<<< HEAD
 import Image from 'next/image'
 
+=======
+import { BsFillInfoCircleFill } from "react-icons/bs";
+>>>>>>> bc37b7a (storyline complete - fetch from info to be added)
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import Iframe from 'react-iframe'
 
 
@@ -59,7 +62,7 @@ export function ToastInfoNarration() {
             <Image className="rounded-md" src="/info.png"
             width={15}
             height={15}
-            priority 
+            priority
             onClick={notify}
             />
             <ToastContainer className="text-sm"/>
@@ -81,73 +84,89 @@ export default function Home() {
         'pronouns': 'she/her',
         'action': 'Take a walk',
     }
+
     const [optionChosen, setOptionChosen] = useState(-1)
-    const [options, setOptions] = useState({})
-    const [requireOptions, setRequireOptions] = useState(true)
-    const [requireInput, setRequireInput] = useState(true);
-    const [prompt, setPrompt] = useState(null);
     const [promptHistory, setPromptHistory] = useState(null);
-    const [formInfo, setFormInfo] = useState(defaultFormInfo);
     const [buttonSettings,setButtonSettings]=useState("");
     const [bubbleSpacer, setBubbleSpacer] = useState("max-h-0");
     const [bubbleDiv, setBubbleDiv] = useState("");
 
-    useEffect(() => {
-        console.log(optionChosen)
-    }, [optionChosen]);
+    const [requireInput, setRequireInput] = useState(true);
+    const [formInfo, setFormInfo] = useState(defaultFormInfo);
+    const [requireOptions, setRequireOptions] = useState(true)
+    const [prompt, setPrompt] = useState(null);
+    const [options, setOptions] = useState({})
+    const [isOver, setIsOver] = useState(false)
+
+    const handleAction = async (e) => {
+        const {id} = e.target;
+        fetchMiddlePrompt(id)
+    }
+
+    const fetchFinalPrompt = async (id) => {
+        formInfo['action'] = options[id]
+        setRequireOptions(true)
+        formInfo['section'] = 'conclusion';
+        const response_API = await axios.post('/api/cohere', formInfo);
+        setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
+        console.log("Final")
+        setIsOver(true)
+    }
+
+    const fetchMiddlePrompt = async (id) => {
+        formInfo['action'] = options[id]
+        setRequireOptions(true)
+        formInfo['section'] = 'middle';
+        const response_API = await axios.post('/api/cohere', formInfo);
+        setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
+        fetchFinalPrompt()
+    }
 
 
     const fetchInitialPrompt = async () => {
+        console.log(formInfo)
         setRequireInput(false);
         formInfo['section'] = 'introduction';
-        formInfo['promptHistory'] = '';
         const response_API = await axios.post('/api/cohere', formInfo);
         setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
-        setPromptHistory(prompt)
         fetchOptions()
     }
 
     const updateBubbles = async () => {
         // setButtonSettings("bg-white rounded-md hover:bg-gray-200 max-w-md py-2 px-5");
-        
+
     }
 
 
 
 
     const fetchOptions = async () => {
-        formInfo['section'] = 'option_intro';
-        formInfo['history'] = promptHistory;
+        const section_prev = formInfo['section']
+        formInfo['section'] = 'option';
         const response_API = await axios.post('/api/cohere', formInfo);
-        const optionsRaw = JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," ")
+        const optionsRaw = JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g,"\n")
         console.log(optionsRaw)
 
         const index = /\d\./
         console.log(optionsRaw.split(index))
         setOptions(optionsRaw.split(index))
         setRequireOptions(false)
+
         setButtonSettings("bg-white rounded-md hover:bg-gray-200 max-w-md py-2 px-5")
         setBubbleSpacer("flex flex-col md:place-content-center container min-w-full items-center")
         setBubbleDiv("my-2")
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const {name, value} = e.target;
         setFormInfo({
             ...formInfo,
             [name]: value,
         });
+        console.log(e.target[0].name.value)
         fetchInitialPrompt()
         updateBubbles()
-    }
-
-    const handleAction = (e) => {
-        const {name, value} = e.target;
-        setFormInfo({
-            ...formInfo,
-            [name]: value,
-        });
-        fetchPrompt()
     }
 
     return (
@@ -175,13 +194,6 @@ export default function Home() {
             <div className={styles.center}>
               <div className={styles.circles}>
 
-               {/* <Image className="rounded-md"
-                  src="/circles.png"
-                  alt="13"
-                  width={534}
-                  height={371}
-                  priority
-                /> */}
                 <>
                     <Iframe url="http://davidholcer.com/assets/works/movingPoints/index.html"
                             width="1000px"
@@ -203,7 +215,7 @@ export default function Home() {
                     requireInput ? (
                     <form method="post">
                         <label className={submitButton}>What is your name?</label>
-                        <input className={buttonField} type="text" placeholder="Angela" id="name" name="name"/><br/>
+                        <input className={buttonField} type="text" id="name" name="name"/><br/>
 
                         <label className={submitButton}>How do you feel today</label>
                         <input className={buttonField} type="text" placeholder="Silly" id="feeling" name="feeling"/><br/>
@@ -217,7 +229,7 @@ export default function Home() {
                         </select><br/>
 
                         <label className={submitButton}>What do you want your character to do?</label>
-                        <input className={buttonField} type="text" placeholder="Take a walk" id="describe" name="action"/><br/><br/>
+                        <input className={buttonField} type="text" placeholder="Take a walk" id="describe" name="action" /><br/><br/>
                   <div class="container min-w-full flex flex-col items-center">
                         <button
                             className="bg-green-600 hover:animate-bounce hover:bg-green-400 text-white font-bold py-2 px-4 rounded-full"
@@ -237,18 +249,14 @@ export default function Home() {
                     )
                 }
                 {
-                    !requireInput && prompt && requireOptions ? (
+                    !isOver && !requireInput && prompt && requireOptions ? (
                         <MutatingDots height="120" width="120" color="#EB4A75" />
                         ) : (
-
-                        <div className={bubbleSpacer}>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(1)}>{options[1]}</button>
-                            <div className={bubbleDiv}></div>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(2)}>{options[2]}</button>
-                            <div className={bubbleDiv}></div>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(3)}>{options[3]}</button>
-                            <div className={bubbleDiv}></div>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(4)}>{options[4]}</button>
+                        <div className="flex flex-col md:place-content-center">
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="1" onClick={handleAction}>{options[1]}</button> <br/>
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="2" onClick={handleAction}>{options[2]}</button> <br/>
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="3" onClick={handleAction}>{options[3]}</button> <br/>
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="4" onClick={handleAction}>{options[4]}</button>
                         </div>
                     )
                 }
