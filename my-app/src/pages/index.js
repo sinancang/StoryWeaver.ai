@@ -71,6 +71,9 @@ export default function Home() {
 
     const submitButton = "px-4 rounded-sm";
     const buttonField ="bg-white w-4/12 h-5 rounded-sm text-base px-2";
+    // var optionsBubble = "";
+    // var bubbleDiv = "";
+    // var bubbleSpacer ="px-0 py-0 max-h-0";
 
     const defaultFormInfo = {
         'name': 'Angela',
@@ -85,6 +88,9 @@ export default function Home() {
     const [prompt, setPrompt] = useState(null);
     const [promptHistory, setPromptHistory] = useState(null);
     const [formInfo, setFormInfo] = useState(defaultFormInfo);
+    const [buttonSettings,setButtonSettings]=useState("");
+    const [bubbleSpacer, setBubbleSpacer] = useState("max-h-0");
+    const [bubbleDiv, setBubbleDiv] = useState("");
 
     useEffect(() => {
         console.log(optionChosen)
@@ -101,6 +107,13 @@ export default function Home() {
         fetchOptions()
     }
 
+    const updateBubbles = async () => {
+        // setButtonSettings("bg-white rounded-md hover:bg-gray-200 max-w-md py-2 px-5");
+        
+    }
+
+
+
 
     const fetchOptions = async () => {
         formInfo['section'] = 'option_intro';
@@ -113,6 +126,9 @@ export default function Home() {
         console.log(optionsRaw.split(index))
         setOptions(optionsRaw.split(index))
         setRequireOptions(false)
+        setButtonSettings("bg-white rounded-md hover:bg-gray-200 max-w-md py-2 px-5")
+        setBubbleSpacer("flex flex-col md:place-content-center container min-w-full items-center")
+        setBubbleDiv("my-2")
     }
 
     const handleSubmit = (e) => {
@@ -122,6 +138,7 @@ export default function Home() {
             [name]: value,
         });
         fetchInitialPrompt()
+        updateBubbles()
     }
 
     const handleAction = (e) => {
@@ -135,8 +152,6 @@ export default function Home() {
 
     return (
         <>
-
-
           <Head>
             <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
               <div>
@@ -150,9 +165,6 @@ export default function Home() {
               </nav>
             </header>
 
-
-
-
             <title>StoryWeaver</title>
             <meta name="description" content="Soniar" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -163,9 +175,7 @@ export default function Home() {
             <div className={styles.center}>
               <div className={styles.circles}>
 
-
-
-                {/* <Image className="rounded-md"
+               {/* <Image className="rounded-md"
                   src="/circles.png"
                   alt="13"
                   width={534}
@@ -182,16 +192,10 @@ export default function Home() {
                             position="relative" />
                     <ToastInfoArt />
                 </>
-
               {/* <P5Wrapper sketch={sketch} ></P5Wrapper>; */}
-              
 
               </div>
             </div>
-
-
-
-
 
           <div className="bg-gradient-to-r from-indigo-800 via-purple-500 to-pink-500 py-9 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
                 <ToastInfoNarration />
@@ -236,11 +240,15 @@ export default function Home() {
                     !requireInput && prompt && requireOptions ? (
                         <MutatingDots height="120" width="120" color="#EB4A75" />
                         ) : (
-                        <div className="flex flex-col md:place-content-center">
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(1)}>{options[1]}</button> <br/>
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(2)}>{options[2]}</button> <br/>
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(3)}>{options[3]}</button> <br/>
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(4)}>{options[4]}</button>
+
+                        <div className={bubbleSpacer}>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(1)}>{options[1]}</button>
+                            <div className={bubbleDiv}></div>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(2)}>{options[2]}</button>
+                            <div className={bubbleDiv}></div>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(3)}>{options[3]}</button>
+                            <div className={bubbleDiv}></div>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(4)}>{options[4]}</button>
                         </div>
                     )
                 }
