@@ -148,13 +148,13 @@ export default function Home() {
                                 <br/>
                             </>
                         ) : (
-                            <MutatingDots color="#EB4A75" />
+                            <MutatingDots height="120" width="120" color="#EB4A75" />
                         )
                     )
                 }
                 {
                     !requireInput && prompt && requireOptions ? (
-                        <MutatingDots color="#EB4A75" />
+                        <MutatingDots height="120" width="120" color="#EB4A75" />
                         ) : (
                         <div className="flex flex-col md:place-content-center">
                             <button className="bg-white rounded-md">{options[1]}</button> <br/>
