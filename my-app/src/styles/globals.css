@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* < !-- HTML !--><button class="button-31" role="button">Button 31</button> */
-
 /* CSS */
 .button-31 {
   background-color: #222;

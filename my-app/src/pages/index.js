@@ -15,13 +15,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
     const submitButton = "px-4";
+  const optionButton = "px-4 bg-white";
     const buttonField ="bg-white w-4/12 h-5";
 
     const defaultFormInfo = {
         'name': 'Angela',
-        'feeling': 'moody',
+        'feeling': 'Silly',
         'pronouns': 'she/her',
-        'action': 'dance',
+        'action': 'Freestyle Rap',
     }
     const [options, setOptions] = useState({})
     const [requireOptions, setRequiredOptions] = useState(true)
@@ -53,14 +54,14 @@ export default function Home() {
     return (
         <>
           <Head>
-            <header className="bg-white bg-opacity-75 w-full flex justify-between items-center p-4">
+            <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
               <div>
                 <a href="/">
-                  <img src="davidholcer.png" alt="Logo" className="px-5 w-2/12" />
+                  <img src="storyweaver.png" alt="Logo" className="px-5 w-3/12" />
                 </a>
               </div>
               <nav className="text-right">
-                <a href="/about" className="text-black hover:text-gray-600 mr-4">About</a>
+                <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a>
               </nav>
             </header>
 
@@ -90,10 +91,10 @@ export default function Home() {
                         <input className={buttonField} type="text" placeholder="Angela" id="name" name="name"/><br/>
 
                         <label className={submitButton}>How do you feel today</label>
-                        <input className={buttonField} type="text" placeholder="Moody" id="feeling" name="feeling"/><br/>
+                        <input className={buttonField} type="text" placeholder="Silly" id="feeling" name="feeling"/><br/>
 
                         <label className={submitButton}>What are your pronouns?</label>
-                        <select name="pronouns" defaultValue="she/her">
+                   <select name="pronouns" className={optionButton} defaultValue="she/her">
                             <option name="he/him">he/him</option>
                             <option name="she/her" selected>she/her</option>
                             <option name="they/them">they/them</option>
@@ -101,8 +102,12 @@ export default function Home() {
                         </select><br/>
 
                         <label className={submitButton}>What do you want your character to do?</label>
-                        <input className={buttonField} type="text" placeholder="Dance" id="describe" name="action"/><br/><br/>
-                        <button className="button-31 animate-bounce" role="button" onClick={handleSubmit}>Submit</button>
+                        <input className={buttonField} type="text" placeholder="Freestyle Rap" id="describe" name="action"/><br/><br/>
+                  <div class="container min-w-full flex flex-col items-center">
+
+                    <button class="bg-green-600 hover:animate-bounce hover:bg-green-400 text-white font-bold py-2 px-4 rounded-full" role="button" onClick={handleSubmit}>Submit</button>
+                  </div>
+
                     </form>
                     ) : (
                         prompt ? (
