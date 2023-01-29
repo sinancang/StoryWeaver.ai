@@ -254,11 +254,14 @@ export default function Home() {
                     !isOver && !requireInput && prompt && requireOptions ? (
                         <MutatingDots height="120" width="120" color="#EB4A75" />
                         ) : (
-                        <div className="flex flex-col md:place-content-center">
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="1" onClick={handleAction}>{options[1]}</button> <br/>
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="2" onClick={handleAction}>{options[2]}</button> <br/>
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="3" onClick={handleAction}>{options[3]}</button> <br/>
-                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" id="4" onClick={handleAction}>{options[4]}</button>
+                        <div className={bubbleSpacer}>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(1)}>{options[1]}</button>
+                            <div className={bubbleDiv}></div>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(2)}>{options[2]}</button>
+                            <div className={bubbleDiv}></div>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(3)}>{options[3]}</button>
+                            <div className={bubbleDiv}></div>
+                            <button className={buttonSettings} onClick={() => setOptionChosen(4)}>{options[4]}</button>
                         </div>
                     )
                 }
