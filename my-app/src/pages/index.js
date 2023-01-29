@@ -83,8 +83,7 @@ export default function Home() {
         'action': 'Take a walk',
     }
 
-    const [optionChosen, setOptionChosen] = useState(-1)
-    const [promptHistory, setPromptHistory] = useState(null);
+
     const [buttonSettings,setButtonSettings]=useState("");
     const [bubbleSpacer, setBubbleSpacer] = useState("max-h-0");
     const [bubbleDiv, setBubbleDiv] = useState("");
@@ -113,11 +112,13 @@ export default function Home() {
 
     const fetchMiddlePrompt = async (id) => {
         console.log(id)
+        console.log(options)
         formInfo['action'] = options[id]
         setRequireOptions(true)
         formInfo['section'] = 'middle';
         const response_API = await axios.post('/api/cohere', formInfo);
         setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
+
         fetchFinalPrompt()
     }
 
@@ -133,7 +134,6 @@ export default function Home() {
 
     const updateBubbles = async () => {
         // setButtonSettings("bg-white rounded-md hover:bg-gray-200 max-w-md py-2 px-5");
-
     }
 
 
