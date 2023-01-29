@@ -4,7 +4,7 @@ import styles from '@/styles/Home.module.css'
 import React, { useEffect, useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
-
+import Image from 'next/image'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,6 +32,12 @@ export function ToastInfoArt() {
     return (
         <div>
             {/* <BsFillInfoCircleFill className="flex " onClick={notify} /> */}
+            <Image className="rounded-md" src="/info.png"
+                width={15}
+                height={15}
+                priority
+                onClick={notify}
+            />
             <ToastContainer className="text-sm" />
         </div>
     );
@@ -50,7 +56,12 @@ export function ToastInfoNarration() {
     });
     return (
         <div>
-            {/* <BsFillInfoCircleFill className="flex " onClick={notify}/> */}
+            <Image className="rounded-md" src="/info.png"
+            width={15}
+            height={15}
+            priority 
+            onClick={notify}
+            />
             <ToastContainer className="text-sm"/>
         </div>
     );
@@ -58,8 +69,8 @@ export function ToastInfoNarration() {
 
 export default function Home() {
 
-    const submitButton = "px-4";
-    const buttonField ="bg-white w-4/12 h-5";
+    const submitButton = "px-4 rounded-sm";
+    const buttonField ="bg-white w-4/12 h-5 rounded-sm text-base px-2";
 
     const defaultFormInfo = {
         'name': 'Angela',
@@ -124,7 +135,7 @@ export default function Home() {
 
     return (
         <>
-        
+
 
           <Head>
             <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
@@ -139,7 +150,7 @@ export default function Home() {
               </nav>
             </header>
 
-          
+
 
 
             <title>StoryWeaver</title>
@@ -173,7 +184,7 @@ export default function Home() {
                 </>
 
               {/* <P5Wrapper sketch={sketch} ></P5Wrapper>; */}
-
+              
 
               </div>
             </div>
@@ -182,7 +193,7 @@ export default function Home() {
 
 
 
-          <div className="bg-gradient-to-r from-indigo-800 via-purple-500 to-pink-500 py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
+          <div className="bg-gradient-to-r from-indigo-800 via-purple-500 to-pink-500 py-9 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
                 <ToastInfoNarration />
                 {
                     requireInput ? (
@@ -194,7 +205,7 @@ export default function Home() {
                         <input className={buttonField} type="text" placeholder="Silly" id="feeling" name="feeling"/><br/>
 
                         <label className={submitButton}>What are your pronouns?</label>
-                        <select name="pronouns" className='bg-white' defaultValue="she/her">
+                        <select name="pronouns" className='bg-white rounded-sm text-base px-2' defaultValue="she/her">
                             <option name="he/him">he/him</option>
                             <option name="she/her" selected>she/her</option>
                             <option name="they/them">they/them</option>
@@ -236,7 +247,7 @@ export default function Home() {
             </div>
             <footer className="bg-transparent text-center py-4" >
               <div className="container">
-                <p className="text-s">Copyright © 2023 StoryWeaver</p>
+                <p className="text-xs">Copyright © 2023 StoryWeaver</p>
               </div>
             </footer >
           </main>

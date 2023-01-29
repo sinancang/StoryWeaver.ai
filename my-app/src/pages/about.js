@@ -31,19 +31,22 @@ export default function Home() {
             <main className={styles.main}>
                 <div className={styles.center}>
                     <div className={styles.circles}>
-                        <Image className="rounded-md"
+                        {/* <Image className="rounded-md"
                             src="/circles.png"
                             alt="13"
                             width={534}
                             height={371}
-                            priority
-                        />
+                            priority */}
+                        {/* /> */}
+
+
+
                     </div>
                 </div>
                
                 <footer className="bg-transparent text-center py-4" >
                     <div className="container">
-                        <p className="text-s">Copyright © 2023 StoryWeaver</p>
+                        <p className="text-xs">Copyright © 2023 StoryWeaver</p>
                     </div>
                 </footer >
             </main>
