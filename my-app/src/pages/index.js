@@ -18,32 +18,36 @@ export default function Home() {
     const buttonField ="bg-white w-4/12 h-5";
 
     const defaultFormInfo = {
-        'name': 'sinan',
+        'name': 'Angela',
         'feeling': 'moody',
-        'pronouns': 'he/him',
+        'pronouns': 'she/her',
         'action': 'dance',
     }
-
+    const [options, setOptions] = useState({})
+    const [requireOptions, setRequiredOptions] = useState(true)
     const [requireInput, setRequireInput] = useState(true);
     const [prompt, setPrompt] = useState(null);
     const [formInfo, setFormInfo] = useState(defaultFormInfo);
 
-    const fetchPrompt = async () => {
+    const fetchInitialPrompt = async () => {
         setRequireInput(false);
+        formInfo['section'] = 'introduction'
+        console.log(formInfo);
         const response_API = await axios.post('/api/cohere', formInfo);
-        setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, ''));
+        setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
     }
 
-    const handleInputChange = (e) => {
+    const fetchOptions = async () => {
+        setRequireOptions(false);
+    }
+
+    const handleSubmit = (e) => {
         const {name, value} = e.target;
         setFormInfo({
             ...formInfo,
             [name]: value,
         });
-    }
-    const handleSubmit = () => {
-        console.log(formInfo);
-        fetchPrompt()
+        fetchInitialPrompt()
     }
 
     return (
@@ -57,7 +61,6 @@ export default function Home() {
               </div>
               <nav className="text-right">
                 <a href="/about" className="text-black hover:text-gray-600 mr-4">About</a>
-                {/* Additional links to other pages */}
               </nav>
             </header>
 
@@ -84,13 +87,13 @@ export default function Home() {
                     requireInput ? (
                     <form method="post">
                         <label className={submitButton}>What is your name?</label>
-                        <input className={buttonField} onChange={handleInputChange} type="text" id="name" name="name"/><br/>
+                        <input className={buttonField} type="text" placeholder="Angela" id="name" name="name"/><br/>
 
                         <label className={submitButton}>How do you feel today</label>
-                        <input className={buttonField} onChange={handleInputChange} type="text" id="feeling" name="feeling"/><br/>
+                        <input className={buttonField} type="text" placeholder="Moody" id="feeling" name="feeling"/><br/>
 
                         <label className={submitButton}>What are your pronouns?</label>
-                        <select name="pronouns" onChange={handleInputChange} defaultValue="she/her">
+                        <select name="pronouns" defaultValue="she/her">
                             <option name="he/him">he/him</option>
                             <option name="she/her" selected>she/her</option>
                             <option name="they/them">they/them</option>
@@ -98,15 +101,29 @@ export default function Home() {
                         </select><br/>
 
                         <label className={submitButton}>What do you want your character to do?</label>
-                        <input className={buttonField} type="text" onChange={handleInputChange} id="describe" name="action"/><br/><br/>
+                        <input className={buttonField} type="text" placeholder="Dance" id="describe" name="action"/><br/><br/>
                         <button className="button-31 animate-bounce" role="button" onClick={handleSubmit}>Submit</button>
                     </form>
                     ) : (
-                            prompt ? (<p>{prompt.replace(/\\n/g," ")}</p>) : (<MutatingDots color="#EB4A75" />)
+                        prompt ? (
+                            <p>{prompt}</p>
+                        ) : (
+                            <MutatingDots color="#EB4A75" />
+                        )
+                    )
+                }
+                {
+                    prompt && requireOptions ? (
+                        <MutatingDots color="#EB4A75" />
+                        ) : (
+                        <>
+                            <button>{options[0]}</button>
+                            <button>{options[1]}</button>
+                        </>
                     )
                 }
             </div>
-            < footer className="bg-transparent text-center py-4" >
+            <footer className="bg-transparent text-center py-4" >
               <div className="container">
                 <p className="text-s">Copyright © 2023 StoryWeaver</p>
               </div>
