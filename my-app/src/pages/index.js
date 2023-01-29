@@ -20,7 +20,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export function ToastInfoArt() {
     const notify = () => toast.info('Feel free to interact with the art by clicking ' +
-        'with your mouse pressing the spacebar. More info in the about page.', {
+        'with your mouse pressing the spacebar.', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -106,7 +106,7 @@ export default function Home() {
         setRequireOptions(true)
         formInfo['section'] = 'conclusion';
         const response_API = await axios.post('/api/cohere', formInfo);
-        setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
+        setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," ").replace(/\\/g," "));
         console.log("Final")
         setIsOver(true)
     }
@@ -204,12 +204,18 @@ export default function Home() {
                             position="relative" />
                     <ToastInfoArt />
                 </>
+
+                <i>
+                            <a href="http://davidholcer.com/moving_points.html">
+                    Moving Points
+                </a>
+                        </i>
               {/* <P5Wrapper sketch={sketch} ></P5Wrapper>; */}
 
               </div>
             </div>
 
-          <div className="bg-gradient-to-r from-indigo-800 via-purple-500 to-pink-500 py-9 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
+          <div className="bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 py-9 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
                 <ToastInfoNarration />
                 {
                     requireInput ? (
@@ -240,7 +246,7 @@ export default function Home() {
                     ) : (
                         prompt ? (
                             <>
-                                <p>{prompt}</p>
+                                <p className='px-56 py-6'>{prompt}</p>
                                 <br/>
                             </>
                         ) : (
