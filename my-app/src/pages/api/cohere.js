@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         } else if (section == 'option') {
             return "Read this: " + promptHistory + "\nNow give an indexed list of four actions the character could take.";
         } else if (section == 'middle') {
-            return "Continue this story: " + promptHistory + "\nDescribe a problem the hero faces next.;
+            return "Continue this story: " + promptHistory + "\nDescribe a problem the hero faces next.";
         } else if (section == 'conclusion') {
             return promptHistory + "\n Now write a conclusion as to how the hero resolves the conflict.";
         }

@@ -88,6 +88,7 @@ export default function Home() {
     const [bubbleSpacer, setBubbleSpacer] = useState("max-h-0");
     const [bubbleDiv, setBubbleDiv] = useState("");
 
+    const [moveToFinal, setMoveToFinal] = useState(false);
     const [requireInput, setRequireInput] = useState(true);
     const [formInfo, setFormInfo] = useState(defaultFormInfo);
     const [requireOptions, setRequireOptions] = useState(true)
@@ -98,6 +99,10 @@ export default function Home() {
     const handleAction = async (e) => {
         const {id} = e.target;
         fetchMiddlePrompt(id)
+
+        if (moveToFinal == true) {
+            fetchFinalPrompt()
+        }
     }
 
     const fetchFinalPrompt = async (id) => {
@@ -113,13 +118,14 @@ export default function Home() {
     const fetchMiddlePrompt = async (id) => {
         console.log(id)
         console.log(options)
+        setMoveToFinal(true)
         formInfo['action'] = options[id]
         setRequireOptions(true)
         formInfo['section'] = 'middle';
         const response_API = await axios.post('/api/cohere', formInfo);
         setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
 
-        fetchFinalPrompt()
+        fetchOptions()
     }
 
 
@@ -138,7 +144,6 @@ export default function Home() {
 
 
     const fetchOptions = async () => {
-        const section_prev = formInfo['section']
         formInfo['section'] = 'option';
         const response_API = await axios.post('/api/cohere', formInfo);
         const optionsRaw = JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g,"\n")
