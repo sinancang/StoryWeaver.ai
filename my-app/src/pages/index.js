@@ -7,9 +7,6 @@ import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
 
 
-// import p5 from 'p5';
-// import '../public/p5js/sketch.js';
-
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,23 +22,36 @@ export default function Home() {
         'action': 'Freestyle Rap',
     }
     const [options, setOptions] = useState({})
-    const [requireOptions, setRequiredOptions] = useState(true)
+    const [requireOptions, setRequireOptions] = useState(true)
     const [requireInput, setRequireInput] = useState(true);
     const [prompt, setPrompt] = useState(null);
+    const [promptHistory, setPromptHistory] = useState(null);
     const [formInfo, setFormInfo] = useState(defaultFormInfo);
 
     const fetchInitialPrompt = async () => {
         setRequireInput(false);
-        formInfo['section'] = 'introduction'
-        console.log(formInfo);
+        formInfo['section'] = 'introduction';
+        formInfo['promptHistory'] = '';
         const response_API = await axios.post('/api/cohere', formInfo);
         setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
+        setPromptHistory(prompt)
+        fetchOptions()
     }
+
 
     const fetchOptions = async () => {
-        setRequireOptions(false);
-    }
+        formInfo['section'] = 'option_intro';
+        formInfo['history'] = promptHistory;
+        const response_API = await axios.post('/api/cohere', formInfo);
+        const optionsRaw = JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," ")
+        console.log(optionsRaw)
 
+        const index = /\d\./
+        console.log(optionsRaw.split(index))
+        setOptions(optionsRaw.split(index))
+        setRequireOptions(false)
+    }
+    
     const handleSubmit = (e) => {
         const {name, value} = e.target;
         setFormInfo({
@@ -111,20 +121,25 @@ export default function Home() {
                     </form>
                     ) : (
                         prompt ? (
-                            <p>{prompt}</p>
+                            <>
+                                <p>{prompt}</p>
+                                <br/>
+                            </>
                         ) : (
                             <MutatingDots color="#EB4A75" />
                         )
                     )
                 }
                 {
-                    prompt && requireOptions ? (
+                    !requireInput && prompt && requireOptions ? (
                         <MutatingDots color="#EB4A75" />
                         ) : (
-                        <>
-                            <button>{options[0]}</button>
-                            <button>{options[1]}</button>
-                        </>
+                        <div className="flex flex-col md:place-content-center">
+                            <button className="bg-white rounded-md">{options[1]}</button> <br/>
+                            <button className="bg-white rounded-md">{options[2]}</button> <br/>
+                            <button className="bg-white rounded-md">{options[3]}</button> <br/>
+                            <button className="bg-white rounded-md">{options[4]}</button>
+                        </div>
                     )
                 }
             </div>
