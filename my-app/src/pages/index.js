@@ -4,7 +4,6 @@ import styles from '@/styles/Home.module.css'
 import React, { useEffect, useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
-import { BsFillInfoCircleFill } from "react-icons/bs";
 
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -32,7 +31,7 @@ export function ToastInfoArt() {
     });
     return (
         <div>
-            <BsFillInfoCircleFill className="flex " onClick={notify} />
+            {/* <BsFillInfoCircleFill className="flex " onClick={notify} /> */}
             <ToastContainer className="text-sm" />
         </div>
     );
@@ -51,7 +50,7 @@ export function ToastInfoNarration() {
     });
     return (
         <div>
-            <BsFillInfoCircleFill className="flex " onClick={notify}/>
+            {/* <BsFillInfoCircleFill className="flex " onClick={notify}/> */}
             <ToastContainer className="text-sm"/>
         </div>
     );
