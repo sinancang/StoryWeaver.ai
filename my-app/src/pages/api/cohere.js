@@ -21,31 +21,30 @@ export default async function handler(req, res) {
     const dbDir = path.join(process.cwd(), 'db');
     const db = dbDir + '/history.txt'
 
+    if (section == 'introduction') {
+        fs.writeFile(db, "")
+    }
+    if (section == 'middle' || section == 'conclusion') {
+        fs.appendFile(db, "\n" + action)
+    }
+
     const promptHistory = await fs.readFile(db, 'utf8');
-
-
 
     const prompt = setPrompt();
 
-    async function setPrompt() {
+    function setPrompt() {
         if (section == 'introduction') {
-            fs.writeFile(db, "")
             return "Write me an introduction to a chaotic story where our hero " +
                 name + ", finds " + pronounMap.get(pronouns)[3] + " feeling " + feeling + " today. So "
                 + pronounMap.get(pronouns)[0] + " decides to " + action + ". What does " + pronounMap.get(pronouns)[0] + " see?";
         } else if (section == 'option') {
             return "Read this: " + promptHistory + "\nNow give an indexed list of four actions the character could take.";
         } else if (section == 'middle') {
-            fs.appendFile(db, "\n" + action)
-            const promptHistory = await fs.readFile(db, 'utf8');
             return "Continue this story: " + promptHistory + "\nDescribe a problem the hero faces next and give a list of four actions the hero can take.";
         } else if (section == 'conclusion') {
-            fs.appendFile(db, "\n" + action)
-            const promptHistory = await fs.readFile(db, 'utf8');
             return promptHistory + "\n Now write a conclusion as to how the hero resolves the conflict.";
         }
     }
-
 
     const response = await cohere.generate({
             model: 'command-xlarge-20221108',
