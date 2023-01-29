@@ -4,12 +4,10 @@ import styles from '@/styles/Home.module.css'
 import React, { useEffect, useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
-<<<<<<< HEAD
 import Image from 'next/image'
 
-=======
 import { BsFillInfoCircleFill } from "react-icons/bs";
->>>>>>> bc37b7a (storyline complete - fetch from info to be added)
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Iframe from 'react-iframe'
@@ -157,16 +155,20 @@ export default function Home() {
         setBubbleDiv("my-2")
     }
 
-    const handleSubmit = (e) => {
+    const handleChange = (e) => {
         e.preventDefault();
         const {name, value} = e.target;
         setFormInfo({
             ...formInfo,
             [name]: value,
         });
-        console.log(e.target[0].name.value)
+    }
+
+    const handleSubmit = () => {
+        console.log(formInfo)
         fetchInitialPrompt()
         updateBubbles()
+
     }
 
     return (
@@ -215,13 +217,13 @@ export default function Home() {
                     requireInput ? (
                     <form method="post">
                         <label className={submitButton}>What is your name?</label>
-                        <input className={buttonField} type="text" id="name" name="name"/><br/>
+                        <input className={buttonField} type="text" placeholder="Angela" id="name" name="name" onChange={handleChange}/><br/>
 
                         <label className={submitButton}>How do you feel today</label>
-                        <input className={buttonField} type="text" placeholder="Silly" id="feeling" name="feeling"/><br/>
+                        <input className={buttonField} type="text" placeholder="Silly" id="feeling" name="feeling" onChange={handleChange}/><br/>
 
                         <label className={submitButton}>What are your pronouns?</label>
-                        <select name="pronouns" className='bg-white rounded-sm text-base px-2' defaultValue="she/her">
+                        <select name="pronouns" className='bg-white rounded-sm text-base px-2' defaultValue="she/her" onChange={handleChange}>
                             <option name="he/him">he/him</option>
                             <option name="she/her" selected>she/her</option>
                             <option name="they/them">they/them</option>
@@ -229,7 +231,7 @@ export default function Home() {
                         </select><br/>
 
                         <label className={submitButton}>What do you want your character to do?</label>
-                        <input className={buttonField} type="text" placeholder="Take a walk" id="describe" name="action" /><br/><br/>
+                        <input className={buttonField} type="text" placeholder="Take a walk" id="describe" name="action" onChange={handleChange}/><br/><br/>
                   <div class="container min-w-full flex flex-col items-center">
                         <button
                             className="bg-green-600 hover:animate-bounce hover:bg-green-400 text-white font-bold py-2 px-4 rounded-full"
