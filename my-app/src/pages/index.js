@@ -98,10 +98,11 @@ export default function Home() {
 
     const handleAction = async (e) => {
         const {id} = e.target;
+        console.log(moveToFinal)
         fetchMiddlePrompt(id)
 
         if (moveToFinal == true) {
-            fetchFinalPrompt()
+            fetchFinalPrompt(id)
         }
     }
 
@@ -113,18 +114,18 @@ export default function Home() {
         setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," ").replace(/\\/g," "));
         console.log("Final")
         setIsOver(true)
+        console.log(isOver)
     }
 
     const fetchMiddlePrompt = async (id) => {
         console.log(id)
         console.log(options)
-        setMoveToFinal(true)
         formInfo['action'] = options[id]
         setRequireOptions(true)
         formInfo['section'] = 'middle';
         const response_API = await axios.post('/api/cohere', formInfo);
         setPrompt(JSON.stringify(response_API.data.text).replace(/['"]+/g, '').replace(/\\n/g," "));
-
+        setMoveToFinal(true)
         fetchOptions()
     }
 
@@ -261,7 +262,7 @@ export default function Home() {
                     )
                 }
                 {
-                    !isOver && !requireInput && prompt && requireOptions ? (
+                    isOver || (!requireInput && prompt && requireOptions) ? (
                         <MutatingDots height="120" width="120" color="#EB4A75" />
                         ) : (
                         <div className={bubbleSpacer}>
