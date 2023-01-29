@@ -180,10 +180,10 @@ export default function Home() {
                   <img src="storyweaver.png" alt="Logo" className="px-5 w-48" />
                 </a>
               </div>
-              <nav className="text-right">
-                <a href="/" className="text-white hover:text-gray-600 mr-4">Demo</a>
-                <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a>
-              </nav>
+              {/* <nav className="text-right"> */}
+                {/* <a href="/" className="text-white hover:text-gray-600 mr-4">Demo</a> */}
+                {/* <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a> */}
+              {/* </nav> */}
             </header>
 
             <title>StoryWeaver</title>
