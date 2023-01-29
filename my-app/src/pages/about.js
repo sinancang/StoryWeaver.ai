@@ -13,7 +13,7 @@ export default function Home() {
                 <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
                     <div>
                         <a href="/">
-                            <img src="storyweaver.png" alt="Logo" className="px-5 w-3/12" />
+                            <img src="storyweaver.png" alt="Logo" className="px-5 w-48" />
                         </a>
                     </div>
                     <nav className="text-right">
