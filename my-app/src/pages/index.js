@@ -112,6 +112,7 @@ export default function Home() {
     }
 
     const fetchMiddlePrompt = async (id) => {
+        console.log(id)
         formInfo['action'] = options[id]
         setRequireOptions(true)
         formInfo['section'] = 'middle';
@@ -259,13 +260,13 @@ export default function Home() {
                         <MutatingDots height="120" width="120" color="#EB4A75" />
                         ) : (
                         <div className={bubbleSpacer}>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(1)}>{options[1]}</button>
+                            <button className={buttonSettings} id="1" onClick={handleAction}>{options[1]}</button>
                             <div className={bubbleDiv}></div>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(2)}>{options[2]}</button>
+                            <button className={buttonSettings} id="2" onClick={handleAction}>{options[2]}</button>
                             <div className={bubbleDiv}></div>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(3)}>{options[3]}</button>
+                            <button className={buttonSettings} id="3" onClick={handleAction}>{options[3]}</button>
                             <div className={bubbleDiv}></div>
-                            <button className={buttonSettings} onClick={() => setOptionChosen(4)}>{options[4]}</button>
+                            <button className={buttonSettings} id="4" onClick={handleAction}>{options[4]}</button>
                         </div>
                     )
                 }

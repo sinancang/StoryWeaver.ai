@@ -29,12 +29,11 @@ export default async function handler(req, res) {
     }
 
     const promptHistory = await fs.readFile(db, 'utf8');
-
     const prompt = setPrompt();
 
     function setPrompt() {
         if (section == 'introduction') {
-            return "Write me an introduction to a chaotic story where our hero " +
+            return "Write me the first paragraph to a chaotic situation where our hero " +
                 name + ", finds " + pronounMap.get(pronouns)[3] + " feeling " + feeling + " today. So "
                 + pronounMap.get(pronouns)[0] + " decides to " + action + ". What does " + pronounMap.get(pronouns)[0] + " see?";
         } else if (section == 'option') {
@@ -49,10 +48,10 @@ export default async function handler(req, res) {
     const response = await cohere.generate({
             model: 'command-xlarge-20221108',
             prompt: prompt,
-            max_tokens: 200,
-            temperature: 0.9,
+            max_tokens: 454,
+            temperature: 1.0,
             k: 0,
-            p: 0.93,
+            p: 0.75,
             frequency_penalty: 1,
             presence_penalty: 1,
             stop_sequences: [],
