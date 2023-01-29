@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
 
@@ -24,12 +24,18 @@ export default function Home() {
         'pronouns': 'she/her',
         'action': 'Take a walk',
     }
+    const [optionChosen, setOptionChosen] = useState(-1)
     const [options, setOptions] = useState({})
     const [requireOptions, setRequireOptions] = useState(true)
     const [requireInput, setRequireInput] = useState(true);
     const [prompt, setPrompt] = useState(null);
     const [promptHistory, setPromptHistory] = useState(null);
     const [formInfo, setFormInfo] = useState(defaultFormInfo);
+
+    useEffect(() => {
+        console.log(optionChosen)
+    }, [optionChosen]);
+
 
     const fetchInitialPrompt = async () => {
         setRequireInput(false);
@@ -62,6 +68,15 @@ export default function Home() {
             [name]: value,
         });
         fetchInitialPrompt()
+    }
+
+    const handleAction = (e) => {
+        const {name, value} = e.target;
+        setFormInfo({
+            ...formInfo,
+            [name]: value,
+        });
+        fetchPrompt()
     }
 
     return (
@@ -157,10 +172,10 @@ export default function Home() {
                         <MutatingDots height="120" width="120" color="#EB4A75" />
                         ) : (
                         <div className="flex flex-col md:place-content-center">
-                            <button className="bg-white rounded-md">{options[1]}</button> <br/>
-                            <button className="bg-white rounded-md">{options[2]}</button> <br/>
-                            <button className="bg-white rounded-md">{options[3]}</button> <br/>
-                            <button className="bg-white rounded-md">{options[4]}</button>
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(1)}>{options[1]}</button> <br/>
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(2)}>{options[2]}</button> <br/>
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(3)}>{options[3]}</button> <br/>
+                            <button className="bg-white rounded-md hover:bg-gray-200 max-w-md" onClick={() => setOptionChosen(4)}>{options[4]}</button>
                         </div>
                     )
                 }
