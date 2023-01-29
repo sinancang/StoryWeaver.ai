@@ -6,7 +6,11 @@ import React, { useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
 
+import Iframe from 'react-iframe'
 
+
+// import P5Wrapper from 'react-p5-wrapper';
+// import sketch from '../sketch/sketch.cjs';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -86,13 +90,28 @@ export default function Home() {
           <main className={styles.main}>
             <div className={styles.center}>
               <div className={styles.circles}>
-                <Image className="rounded-md"
+
+
+
+                {/* <Image className="rounded-md"
                   src="/circles.png"
                   alt="13"
                   width={534}
                   height={371}
                   priority
-                />
+                /> */}
+
+              <Iframe url="http://davidholcer.com/assets/works/movingPoints/index.html"
+                width="1000px"
+                height="500px"
+                id=""
+                className="rounded-md px-2 py-8"
+                display="block"
+                position="relative" />
+
+              {/* <P5Wrapper sketch={sketch} ></P5Wrapper>; */}
+
+
               </div>
             </div>
             <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
@@ -115,10 +134,12 @@ export default function Home() {
 
                         <label className={submitButton}>What do you want your character to do?</label>
                         <input className={buttonField} type="text" placeholder="Take a walk" id="describe" name="action"/><br/><br/>
+                  <div class="container min-w-full flex flex-col items-center">
                         <button
                             className="bg-green-600 hover:animate-bounce hover:bg-green-400 text-white font-bold py-2 px-4 rounded-full"
                             role="button" onClick={handleSubmit}>Submit
                         </button>
+                        </div>
                     </form>
                     ) : (
                         prompt ? (
