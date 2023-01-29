@@ -1,10 +1,15 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import React, { useEffect, useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
 import axios from 'axios';
+import { BsFillInfoCircleFill } from "react-icons/bs";
+
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Iframe from 'react-iframe'
 
@@ -14,7 +19,47 @@ import Iframe from 'react-iframe'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export function ToastInfoArt() {
+    const notify = () => toast.info('Feel free to interact with the art by clicking ' +
+        'with your mouse pressing the spacebar. More info in the about page.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    });
+    return (
+        <div>
+            <BsFillInfoCircleFill className="flex " onClick={notify} />
+            <ToastContainer className="text-sm" />
+        </div>
+    );
+}
+export function ToastInfoNarration() {
+    const notify = () => toast.info('You set the stage! Enter some information about ' +
+        'your story to get a personalized narration experience', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    });
+    return (
+        <div>
+            <BsFillInfoCircleFill className="flex " onClick={notify}/>
+            <ToastContainer className="text-sm"/>
+        </div>
+    );
+}
+
 export default function Home() {
+
     const submitButton = "px-4";
     const buttonField ="bg-white w-4/12 h-5";
 
@@ -115,14 +160,16 @@ export default function Home() {
                   height={371}
                   priority
                 /> */}
-
-              <Iframe url="http://davidholcer.com/assets/works/movingPoints/index.html"
-                width="1000px"
-                height="500px"
-                id=""
-                className="rounded-md px-2 py-8"
-                display="block"
-                position="relative" />
+                <>
+                    <Iframe url="http://davidholcer.com/assets/works/movingPoints/index.html"
+                            width="1000px"
+                            height="500px"
+                            id=""
+                            className="rounded-md px-2 py-8"
+                            display="block"
+                            position="relative" />
+                    <ToastInfoArt />
+                </>
 
               {/* <P5Wrapper sketch={sketch} ></P5Wrapper>; */}
 
@@ -130,6 +177,7 @@ export default function Home() {
               </div>
             </div>
             <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
+                <ToastInfoNarration />
                 {
                     requireInput ? (
                     <form method="post">
