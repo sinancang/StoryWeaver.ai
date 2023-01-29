@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     const response = await cohere.generate({
             model: 'command-xlarge-20221108',
             prompt: prompt,
-            max_tokens: 100,
+            max_tokens: 200,
             temperature: 0.9,
             k: 0,
             p: 0,

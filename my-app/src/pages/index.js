@@ -12,14 +12,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
     const submitButton = "px-4";
-  const optionButton = "px-4 bg-white";
     const buttonField ="bg-white w-4/12 h-5";
 
     const defaultFormInfo = {
         'name': 'Angela',
         'feeling': 'Silly',
         'pronouns': 'she/her',
-        'action': 'Freestyle Rap',
+        'action': 'Take a walk',
     }
     const [options, setOptions] = useState({})
     const [requireOptions, setRequireOptions] = useState(true)
@@ -51,7 +50,7 @@ export default function Home() {
         setOptions(optionsRaw.split(index))
         setRequireOptions(false)
     }
-    
+
     const handleSubmit = (e) => {
         const {name, value} = e.target;
         setFormInfo({
@@ -63,17 +62,17 @@ export default function Home() {
 
     return (
         <>
-          <Head>
-            <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
-              <div>
-                <a href="/">
-                  <img src="storyweaver.png" alt="Logo" className="px-5 w-3/12" />
-                </a>
-              </div>
-              <nav className="text-right">
-                <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a>
-              </nav>
-            </header>
+            <Head>
+                <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
+                    <div>
+                        <a href="/">
+                            <img src="storyweaver.png" alt="Logo" className="px-5 w-3/12" />
+                        </a>
+                    </div>
+                    <nav className="text-right">
+                        <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a>
+                    </nav>
+                </header>
 
             <title>Soniar</title>
             <meta name="description" content="Soniar" />
@@ -104,7 +103,7 @@ export default function Home() {
                         <input className={buttonField} type="text" placeholder="Silly" id="feeling" name="feeling"/><br/>
 
                         <label className={submitButton}>What are your pronouns?</label>
-                   <select name="pronouns" className={optionButton} defaultValue="she/her">
+                        <select name="pronouns" defaultValue="she/her">
                             <option name="he/him">he/him</option>
                             <option name="she/her" selected>she/her</option>
                             <option name="they/them">they/them</option>
@@ -112,12 +111,11 @@ export default function Home() {
                         </select><br/>
 
                         <label className={submitButton}>What do you want your character to do?</label>
-                        <input className={buttonField} type="text" placeholder="Freestyle Rap" id="describe" name="action"/><br/><br/>
-                  <div class="container min-w-full flex flex-col items-center">
-
-                    <button class="bg-green-600 hover:animate-bounce hover:bg-green-400 text-white font-bold py-2 px-4 rounded-full" role="button" onClick={handleSubmit}>Submit</button>
-                  </div>
-
+                        <input className={buttonField} type="text" placeholder="Take a walk" id="describe" name="action"/><br/><br/>
+                        <button
+                            className="bg-green-600 hover:animate-bounce hover:bg-green-400 text-white font-bold py-2 px-4 rounded-full"
+                            role="button" onClick={handleSubmit}>Submit
+                        </button>
                     </form>
                     ) : (
                         prompt ? (
