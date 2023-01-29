@@ -7,7 +7,6 @@ import axios from 'axios';
 import { BsFillInfoCircleFill } from "react-icons/bs";
 
 
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -126,6 +125,7 @@ export default function Home() {
 
     return (
         <>
+        
 
           <Head>
             <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
@@ -139,6 +139,8 @@ export default function Home() {
                 <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a>
               </nav>
             </header>
+
+          
 
 
             <title>StoryWeaver</title>
@@ -176,7 +178,12 @@ export default function Home() {
 
               </div>
             </div>
-            <div className="bg-[#005CE7] py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
+
+
+
+
+
+          <div className="bg-gradient-to-r from-indigo-800 via-purple-500 to-pink-500 py-2 px-4 rounded-md text-black focus:outline-none focus:shadow-outline-blue colorbg-midnight leading-8 h-100 w-100">
                 <ToastInfoNarration />
                 {
                     requireInput ? (
@@ -188,7 +195,7 @@ export default function Home() {
                         <input className={buttonField} type="text" placeholder="Silly" id="feeling" name="feeling"/><br/>
 
                         <label className={submitButton}>What are your pronouns?</label>
-                        <select name="pronouns" defaultValue="she/her">
+                        <select name="pronouns" className='bg-white' defaultValue="she/her">
                             <option name="he/him">he/him</option>
                             <option name="she/her" selected>she/her</option>
                             <option name="they/them">they/them</option>
