@@ -62,22 +62,25 @@ export default function Home() {
 
     return (
         <>
-            <Head>
-                <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
-                    <div>
-                        <a href="/">
-                            <img src="storyweaver.png" alt="Logo" className="px-5 w-3/12" />
-                        </a>
-                    </div>
-                    <nav className="text-right">
-                        <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a>
-                    </nav>
-                </header>
 
-            <title>Soniar</title>
+          <Head>
+            <header className="bg-black bg-opacity-75 w-full flex justify-between items-center p-4">
+              <div>
+                <a href="/">
+                  <img src="storyweaver.png" alt="Logo" className="px-5 w-3/12" />
+                </a>
+              </div>
+              <nav className="text-right">
+                <a href="/" className="text-white hover:text-gray-600 mr-4">Demo</a>
+                <a href="/about" className="text-white hover:text-gray-600 mr-4">About</a>
+              </nav>
+            </header>
+
+
+            <title>StoryWeaver</title>
             <meta name="description" content="Soniar" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/cloud.ico" />
+          <link rel="icon" href="/favicon.png" />
 
           </Head>
           <main className={styles.main}>
