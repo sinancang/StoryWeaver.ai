@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
     const dbDir = path.join(process.cwd(), 'db');
     const db = dbDir + '/history.txt'
-
+/*
     if (section == 'introduction') {
         fs.writeFile(db, "")
     }
@@ -29,6 +29,8 @@ export default async function handler(req, res) {
     }
 
     const promptHistory = await fs.readFile(db, 'utf8');
+*/
+    const promptHistory = ""
     const prompt = setPrompt();
 
     function setPrompt() {
