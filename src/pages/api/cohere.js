@@ -62,20 +62,13 @@ export default async function handler(req, res) {
 
     const response_text = response.body.generations[0].text
 
-    console.log('\n')
-    console.log('\n')
-    console.log(section)
-    console.log('\n')
-    console.log(action)
-    console.log('\n')
-    console.log(prompt)
-    console.log('\n')
-    console.log('\n')
 
-
+    /*
     if (section != 'option' && section != 'middle') {
         fs.appendFile(db, response_text)
     }
+
+     */
 
     res.status(200).json({ text: response_text});
 }
