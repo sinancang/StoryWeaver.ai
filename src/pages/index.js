@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import React, { useEffect, useState } from 'react';
 import { MutatingDots } from 'react-loader-spinner'
@@ -8,34 +6,7 @@ import Image from 'next/image'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Iframe from 'react-iframe'
 
-
-export function ToastInfoArt() {
-    const notify = () => toast.info('Feel free to interact with the art by clicking ' +
-        'with your mouse pressing the spacebar.', {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-    });
-    return (
-        <div>
-            {/* <BsFillInfoCircleFill className="flex " onClick={notify} /> */}
-            <Image className="rounded-md" src="/info.png"
-                width={15}
-                height={15}
-                priority
-                onClick={notify}
-            />
-            <ToastContainer className="text-sm" />
-        </div>
-    );
-}
 export function ToastInfoNarration() {
     const notify = () => toast.info('You set the stage! Enter some information about ' +
         'your story to get a personalized narration experience', {
@@ -175,14 +146,13 @@ export default function Home() {
                 <div className={styles.center}>
                     <div className={styles.circles}>
                         <>
-                            <Iframe url="http://davidholcer.com/assets/works/movingPoints/index.html"
-                                    width="1000px"
-                                    height="500px"
-                                    id=""
-                                    className="rounded-md px-2 py-8"
-                                    display="block"
-                                    position="relative" />
-                            <ToastInfoArt />
+                            <Image className="rounded-md"
+                                   src="/circles.png"
+                                   alt="13"
+                                   width={534}
+                                   height={371}
+                                   priority
+                            />
                         </>
                         <i>
                             <a href="http://davidholcer.com/moving_points.html">
